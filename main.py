@@ -197,7 +197,8 @@ async def telegram_webhook(request: Request):
             await send_telegram_message(sender_id, final_message)
 
         except Exception as e:
-            error_msg = f"⚠️ Ocurrió un error al procesar la solicitud: `{str(e)}`"
+            # Añadimos esto para ver si el error es de Supabase o de Gemini
+            error_msg = f"⚠️ Error: `{str(e)}`"
             await send_telegram_message(sender_id, error_msg)
 
     return Response(status_code=200)
