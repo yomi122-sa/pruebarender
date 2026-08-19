@@ -197,8 +197,13 @@ async def telegram_webhook(request: Request):
             await send_telegram_message(sender_id, final_message)
 
         except Exception as e:
-            # Añadimos esto para ver si el error es de Supabase o de Gemini
-            error_msg = f"⚠️ Error: `{str(e)}`"
+            import traceback
+            error_details = traceback.format_exc()
+            print("--- ERROR DETALLADO ---")
+            print(error_details)
+            print(f"URL de Supabase usada: {SUPABASE_URL}")
+            # Envía el error resumido a Telegram para que lo veas rápido
+            error_msg = f"⚠️ Error interno: `{str(e)}`"
             await send_telegram_message(sender_id, error_msg)
 
     return Response(status_code=200)
