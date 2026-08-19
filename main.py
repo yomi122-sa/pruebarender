@@ -117,7 +117,7 @@ def execute_action(action: Dict[str, Any]) -> str:
         res = supabase.table("tasks").select("*").eq("is_done", False).order("id").execute()
         if not res.data:
             return "🎉 ¡No tienes tareas pendientes!"
-        lista = "\n".join([f"• `[ID {t['id']}]` {t['title']} {f'(📅 {t[\"due_date\"]})' if t['due_date'] else ''}" for t in res.data])
+        lista = "\n".join([f"• `[ID {t['id']}]` {t['title']} {f'(📅 {t["due_date"]})' if t['due_date'] else ''}" for t in res.data])
         return f"📋 *Tareas pendientes:*\n{lista}"
 
     elif action_type == "complete_task":
