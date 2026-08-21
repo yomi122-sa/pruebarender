@@ -4,3 +4,5 @@ httpx
 supabase 
 google-generativeai 
 python-dotenv 
+apscheduler
+
